@@ -1,3 +1,4 @@
+import random
 ''' 
     
     Law of large numbers 
@@ -40,5 +41,11 @@
 '''
 
 
+def testLawOfLargeNumber(n_numbers):
+    RandomNumbersList = []
+    mean = 0
+    stdev = 1
 
-normalvarie()
+    RandomNumbersList = random.gauss(mean, stdev, n_numbers)
+    
+    
