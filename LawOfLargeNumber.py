@@ -1,6 +1,9 @@
 import random
+import numpy as np
+import matplotlib.pyplot as plt
 ''' 
-    
+    https://towardsdatascience.com/law-of-large-numbers-in-finance-using-python-86945eaee444
+
     Law of large numbers 
 
     Xn -> E(x) when n -> infinity
@@ -39,13 +42,49 @@ import random
     Check that mean(Xn) -> E(x) as you rerun your script while increasing N
 
 '''
+n_numbers=1000
+probhead=[]
+probtail=[]
+flip=[]
 
 
-def testLawOfLargeNumber(n_numbers):
-    RandomNumbersList = []
-    mean = 0
-    stdev = 1
+head=0
+tail=0
 
-    RandomNumbersList = random.gauss(mean, stdev, n_numbers)
-    
-    
+for n in range(n_numbers):
+    if random.randint(0,1)==0:
+        head+=1
+    else:
+        tail+=1
+    h=head/(head+tail)
+    t=tail/(head+tail)
+    probhead.append(h)
+    probtail.append(t)
+    flip.append(n)
+
+plt.subplot(4,1,1)
+plt.hist(probhead,100,label='Probality of Heads')
+plt.legend()
+plt.xlim(-1,1)
+
+plt.subplot(4,1,2)
+plt.hist(probtail,100,label='Probality of Tails')
+plt.legend()
+plt.xlim(-1,1)
+
+
+plt.subplot(4,1,3)
+plt.plot(flip,probhead)
+plt.xlabel('Number of Flips')
+plt.ylabel('Probability of Heads')
+plt.grid(True)
+plt.ylim(0,1)
+
+plt.subplot(4,1,4)
+plt.plot(flip,probtail)
+plt.xlabel('Number of Flips')
+plt.ylabel('Probability of Tails')
+plt.grid(True)
+plt.ylim(0,1)
+
+plt.show()
