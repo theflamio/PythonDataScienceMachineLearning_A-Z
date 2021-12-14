@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+import statistics
 ''' 
     https://towardsdatascience.com/law-of-large-numbers-in-finance-using-python-86945eaee444
 
@@ -44,9 +45,7 @@ import matplotlib.pyplot as plt
 '''
 n_numbers=1000
 probhead=[]
-probtail=[]
 flip=[]
-
 
 head=0
 tail=0
@@ -57,34 +56,21 @@ for n in range(n_numbers):
     else:
         tail+=1
     h=head/(head+tail)
-    t=tail/(head+tail)
     probhead.append(h)
-    probtail.append(t)
     flip.append(n)
 
-plt.subplot(4,1,1)
+print(statistics.mean(probhead)) # mean
+print(statistics.stdev(probhead)) #standard deviation
+
+plt.subplot(2,1,1)
 plt.hist(probhead,100,label='Probality of Heads')
 plt.legend()
 plt.xlim(-1,1)
 
-plt.subplot(4,1,2)
-plt.hist(probtail,100,label='Probality of Tails')
-plt.legend()
-plt.xlim(-1,1)
-
-
-plt.subplot(4,1,3)
+plt.subplot(2,1,2)
 plt.plot(flip,probhead)
 plt.xlabel('Number of Flips')
 plt.ylabel('Probability of Heads')
 plt.grid(True)
 plt.ylim(0,1)
-
-plt.subplot(4,1,4)
-plt.plot(flip,probtail)
-plt.xlabel('Number of Flips')
-plt.ylabel('Probability of Tails')
-plt.grid(True)
-plt.ylim(0,1)
-
 plt.show()
