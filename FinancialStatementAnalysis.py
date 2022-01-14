@@ -1,3 +1,5 @@
+import math
+
 '''
 You have been supplied with tow list of data:
 
@@ -58,34 +60,34 @@ doubled_a = [i * 2 for i in a]
 doubled_a
 
 '''
-
 #Data 
 revenue = [14574.49, 7606.46, 8611.41, 9175.41, 8058.65, 8105.44, 11496.28, 9766.09, 10305.32, 14379.96, 10713.97, 15433.50]
 expenses = [12051.82, 5695.07, 12319.20, 12089.72, 8658.57, 840.20, 3285.73, 5821.12, 6976.93, 16618.61, 10054.37, 3803.96]
 
-#Solution
-#Calculate Profit As The Differences Between Revenue And Expenses
-profit = []
-
-for i in range (0, len(revenue)):
-    profit.append(revenue[i] - expenses [i])
-
+# PrintResults in 1 k dollars with no decimal
 def PrintResults(inputResult):
-    months = ["January", ""]
+    months = ["January", "February","March","April","May","June","july","August", "September", "Oktober", "November", "December"]
     for i in range(0, len(inputResult)):
-        print()
+        print(months[i],round(inputResult[i] / 1000), "k dollars")
 
+# Calculate Renenue after tax on 30 %
+def RenenueAfterTax(renevue):
+    print("hello")
+
+#Calculate Profit As The Differences Between Revenue And Expenses
+def CalculateRevenue(Revenue, Expenses):
+    profit = []
+    for i in range (0, len(Revenue)):
+        profit.append(round(Revenue[i] - Expenses [i],2))
+    return profit
 
 #Print Results
 print ("Revenue :") 
-print (profit[:])
-#print (revenue_1000)
-#print ("Expenses :") 
-#print (expenses_1000)
-#print ("Profit :")
-#print(profit_1000)
-#print ("Profit after tax :")
-#print (profit_after_tax_1000)
+PrintResults(CalculateRevenue(revenue, expenses))
+
+# Revenue after taxes
+print ("Profit after tax :")
+print (profit_after_tax_1000)
 #print ("Profit margin :")
 #print (profit_margin)
 #print ("Good months :")
