@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 '''
 You have been supplied with tow list of data:
@@ -72,14 +73,53 @@ def PrintResults(inputResult):
 
 # Calculate Renenue after tax on 30 %
 def RenenueAfterTax(renevue):
-    print("hello")
+    profit = []
+    for i in range (0, len(renevue)):
+        profit.append(renevue[i] * 0.70)
+    return profit
 
 #Calculate Profit As The Differences Between Revenue And Expenses
-def CalculateRevenue(Revenue, Expenses):
+def CalculateRevenue(renevue, expenses):
     profit = []
-    for i in range (0, len(Revenue)):
-        profit.append(round(Revenue[i] - Expenses [i],2))
+    for i in range (0, len(renevue)):
+        profit.append(round(renevue[i] - expenses [i],2))
     return profit
+
+# Calculate profit margin for each month . equals to profit after tax devided be revenue.
+def CalculateProfitMargin(renevueAfterTax, renevue):
+    margin = []
+    for i in range (0, len(renevueAfterTax)):
+        margin.append(renevueAfterTax[i] / renevue [i])
+    return margin
+
+# Calculate the best month - where the profit after tax was max for the year.
+def BestMonth(profitAfterTax):
+    bestmonth = max(profitAfterTax)
+    return bestmonth
+
+# Calculate  the worst month - where the profit after tax was min for the year.
+def WorstMonth(profitAfterTax):
+    worstMonth = min(profitAfterTax)
+    return worstMonth
+
+# Calculate good months - where profit after tax was greaten than the mean of the year.
+def GoodMonths(profitAfterTax):
+    goodMonths = []
+    meanOfYear = np.mean(profitAfterTax)
+    for i in range (0, len(profitAfterTax)):
+        if(profitAfterTax[i] > meanOfYear):
+            goodMonths.append(profitAfterTax[i])
+    return goodMonths
+
+
+# Calculate bad months - where profit after tax was lees than the mean for the year.
+def BadMonths(profitAfterTax):
+    badMonths = []
+    meanOfYear = np.mean(profitAfterTax)
+    for i in range (0, len(profitAfterTax)):
+        if(profitAfterTax[i] < meanOfYear):
+            badMonths.append(profitAfterTax[i])
+    return badMonths
 
 #Print Results
 print ("Revenue :") 
@@ -87,14 +127,19 @@ PrintResults(CalculateRevenue(revenue, expenses))
 
 # Revenue after taxes
 print ("Profit after tax :")
-print (profit_after_tax_1000)
-#print ("Profit margin :")
-#print (profit_margin)
-#print ("Good months :")
-#print (good_months)
-#print ("Bad months :")
-#print (bad_months)
-#print ("Best month :")
-#print (best_month)
-#print ("Worst month :")
-#print (worst_month)
+PrintResults (RenenueAfterTax(CalculateRevenue(revenue, expenses)))
+
+print ("Profit margin :")
+PrintResults (CalculateProfitMargin(RenenueAfterTax(CalculateRevenue(revenue, expenses)), CalculateRevenue(revenue, expenses)))
+
+print ("Good months :")
+print (GoodMonths(RenenueAfterTax(CalculateRevenue(revenue, expenses))))
+
+print ("Bad months :")
+print (BadMonths(RenenueAfterTax(CalculateRevenue(revenue, expenses))))
+
+print ("Best month :")
+print (BestMonth(RenenueAfterTax(CalculateRevenue(revenue, expenses))))
+
+print ("Worst month :")
+print (WorstMonth(RenenueAfterTax(CalculateRevenue(revenue, expenses))))
