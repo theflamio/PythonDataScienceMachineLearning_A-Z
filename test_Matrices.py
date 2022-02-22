@@ -4,4 +4,4 @@ import math
 
 def test_sqrt():
     num=25
-    assert math.sqrt(num) == 4
+    assert math.sqrt(num) == 5
