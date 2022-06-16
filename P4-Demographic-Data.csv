@@ -1,4 +1,4 @@
-CountryName,CountryCode,Birthrate,Internetusers,IncomeGroup
+CountryName,CountryCode,BirthRate,InternetUsers,IncomeGroup
 Aruba,ABW,10.244,78.9,High income
 Afghanistan,AFG,35.253,5.9,Low income
 Angola,AGO,45.985,19.1,Upper middle income
